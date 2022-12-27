@@ -1,4 +1,4 @@
-package practiceAutomationTesting;
+package Day7_Iframe_WindowHandles.practiceAutomationTesting;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.*;

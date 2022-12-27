@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.Select;
 import utilities.BaseTest;
 
 import javax.swing.*;
@@ -72,11 +73,40 @@ public class odev_Amazon extends BaseTest {
 
 
         // Arama butonu yanındaki kategoriler tabından bilgisayar seçilir.
+        WebElement searchDropDownBox = driver.findElement(By.id("searchDropdownBox"));
+        Select select = new Select(searchDropDownBox);
+        select.selectByVisibleText("Bilgisayarlar");
+
+        //  Bilgisayar kategorisi seçildiği kontrol edilir.
+        // Assert.assertEquals(select.getFirstSelectedOption().getText(),"Bilgisayarlar");
+
+        //  o Arama alanına MSI yazılır ve arama yapılır.
+        WebElement aramaKutusu = driver.findElement(By.id("twotabsearchtextbox"));
+        aramaKutusu.sendKeys("MSI" + Keys.ENTER);
+
+        // o Arama yapıldığı kontrol edilir.
+
+        Assert.assertTrue(driver.getTitle().contains("MSI"));
+
+        // o Arama sonuçları sayfasından 2. sayfa açılır.
+        WebElement ikincisayfa = driver.findElement(By.linkText("2"));
+        ikincisayfa.click();
+
+        // o 2. sayfanın açıldığı kontrol edilir.
+        // Assert.assertTrue(ikincisayfa.isDisplayed());
 
 
+        //  o Sayfadaki 2. ürün favorilere eklenir.
 
+        WebElement tv = driver.findElement(By.xpath("//img[@class='s-image' and @data-image-index='26']"));
+        tv.click();
 
+        WebElement listeyeEkle = driver.findElement(By.xpath("//input[@value='Listeye Ekle']"));
+        listeyeEkle.click();
+        WebElement listeoluştur = driver.findElement(By.xpath("(//input[@class='a-button-input a-declarative'])[3]"));
+        listeoluştur.click();
 
+        // o 2. Ürünün favorilere eklendiği kontrol edilir.
 
 
     }
